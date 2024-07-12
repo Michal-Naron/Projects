@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            font-size: 50px;
+            margin: 0px;
+        }
+        #div1{
+            margin: 50px 0px 0px 100px;
+        }
+        table{
+            text-align: right;
+            border-collapse: collapse;
+        }
+        td{
+            padding: 5px 10px 5px 0px;
+        }
+        #numl{
+            border-right: 1px solid black;
+            padding-right: 10px;
+        }
+        #numb{
+            text-align: center;
+            border-top: 1px solid black;
+        }
+        .heads{
+            color: yellow;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            border: 1px solid black;
+        }
+        .tails{
+            color: darkslateblue;
+            width: 50px;
+            height: 50px;
+            background-color:darkslateblue;
+            border: 1px solid black;
+
+            
+        }
+        button{
+            width: 200px;
+            height: 100px;
+
+        }
+
+    </style>
+    <script>
+        function build(){
+            let main = document.getElementById("main");
+
+            out = "";
+            for(i=1;i<=10;i++){
+                out += "<tr>";
+                out += "<td id='numl'>"+i+"</td>";
+                    for(x=1;x<=2;x++){
+                        out += "<td><div  id='z"+i+x+"'class='heads'>1</div></td>";
+                    }
+                    for(x=3;x<=4;x++){
+                        out += "<td><div  id='z"+i+x+"'class='tails'>0</div></td>";
+                    }
+                out += "</tr>";
+            }
+            out += "<tr><td></td>";
+
+            for(x=1;x<=4;x++){
+                out += "<td id='numb'>"+x+"</td>";
+            }
+            out += "</tr>";
+
+            main.innerHTML += out;
+            
+            
+        }
+        function algorithm(){
+        for(x=1;x<=4;x++){
+            for(i1=1;i1<=10;i1++){
+                for(i2=1;i2<=4;i2++){
+
+                    coin1 = document.getElementById("z"+i1+i2);
+                    rnum = Math.floor(Math.random() * 4) + 1;
+                    coin2 = document.getElementById("z"+i1+rnum);
+                    if(coin1.innerHTML == "1"){
+                    
+                        if(coin2.innerHTML == "0"){
+
+                            coin2.innerHTML = "1";
+                            coin2.classList.remove("tails");
+                            coin2.classList.add("heads");
+                        
+                            coin1.innerHTML = "0";
+                            coin1.classList.remove("heads");
+                            coin1.classList.add("tails");
+
+                        
+                        }
+                    }
+                    else{
+                    
+                        if(coin2.innerHTML == "1"){
+                            coin1.innerHTML = "1";
+                            coin1.classList.remove("tails");
+                            coin1.classList.add("heads");
+
+                            coin2.innerHTML = "0"
+                            coin2.classList.remove("heads");
+                            coin2.classList.add("tails");
+                        }
+                    
+                    }
+                }
+            }
+        }
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body onload="build()">
+    <div id="div1">
+        <table id="main">
+        </table>
+        <input type="button" value="START"onclick="algorithm()">
+    </div>
+    
+</body>
+</html>

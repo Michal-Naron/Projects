@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            font-size: 50px;
+            float: left;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        input{
+            width: 200px;
+        }
+        #strona{
+            margin: 100px 21% 0 21%;
+            width: 700px;
+        }
+        .lewo{
+            width: 800px;
+            height: 70px;
+        }
+        #startblok{
+            margin-left: 500px;
+        }
+        #start{
+            
+            width: 100px;
+            height: 100px;
+        }
+        .orzel{
+            color: yellow;
+            background-color: blue;
+        }
+        .resztka{
+            color: blue;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        function konstrukcja(){//funkcja budująca tabelke
+            strona = document.getElementById("strona");//bierzemy blok w ktorym bedzie tabelka
+
+            wiersz=1;//numer pierwszego wiersza
+            while(wiersz<11){//petla wyliczajace od 1 do 10
+                strona.innerHTML += "<div class='lewo' id='wiersz"+wiersz+"'></div>";//dosatawiamy blok 1 wiersza
+                jakitowiersz = document.getElementById("wiersz"+wiersz);//a teraz bierzemy blok tego wiersza do zmiennej
+                for(i=1;i<5;i++){//petla wykonujaca sie 4 razy ze zmienna od 1 do 4
+                    if(i<3){//jesli i mniejsze od 3 to wykonujemy instrukcje czyli wykona się ona 2 razy
+                        jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";//a teraz dostawiamy do naszgo wiersza monety orły
+                    }
+                    else{//jak warunek if nie jest spelniany to wykonuje się to
+                        jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";//a teraz dostawiamy do naszgo wiersza monety resztki
+                    }
+                }
+                wiersz=wiersz+1;//wiersz sie zwieksza po kazdym wykonaniu wszystkich funkcji przez co wiersze nie powrtarzaja się max do 10 aby nie nadpisywać zapisanych juz wierszy
+            }
+            
+        }
+        function start(){//funckja z całym algorytmem
+                
+
+                
+                for(p=1;p<5;p++){//petla wykonujaca podpunkt d
+                    wiersz = 1;
+                    while(wiersz<11){//to samo co w funkcji konstrukcja
+
+                        if(p==1){//przypisanie wartosci poczatkowych monetom musi sie odbywac tylko raz w stosunku do podpunktu d
+                            moneta1 = 1;
+                            moneta2 = 1;
+                            moneta3 = 0;
+                            moneta4 = 0;
+                        }
+                        
+
+                        jakitowiersz = document.getElementById("wiersz"+wiersz);//wiersze od 1 do 10
+
+                        for(i=1;i<5;i++){//petla wykonująca sie 4 razy dla 4 monet
+                            losowa = Math.floor(Math.random() * 4) + 1;//losowanie liczb od 1 do 4
+                            
+
+                            //WSZYSTKIE WARUNKI SĄ SPECUIALNIE 4 RAZY DLA 4 MONET
+                            if(losowa==1)monetadwa = moneta1;//przypisujemy wartosc monety wylosowanej do zmiennej tymczasowej
+                            if(losowa==2)monetadwa = moneta2;
+                            if(losowa==3)monetadwa = moneta3;
+                            if(losowa==4)monetadwa = moneta4;
+
+                            if(i==1){
+                                staramoneta = moneta1;//zapisujemy wartosc monety1 do zmioennej tymczxasowej aby jej nie utracic
+                                moneta1 = monetadwa;//moneta bazowa teraz ma wartoscc monety wylosowanej
+                            }
+                            if(i==2){
+                                staramoneta = moneta2;
+                                moneta2 = monetadwa;
+                            }
+                            if(i==3){
+                                staramoneta = moneta3;
+                                moneta3 = monetadwa;
+                            }
+                            if(i==4){
+                                staramoneta = moneta4;
+                                moneta4 = monetadwa;
+                            }
+
+                            if(losowa==1)moneta1 = staramoneta;//teraz moneta wylosowana ma wartosc monety bazowej ze zmiennej tymczasowej przechowującej wartosc monety bazowej
+                            if(losowa==2)moneta2 = staramoneta;
+                            if(losowa==3)moneta3 = staramoneta;
+                            if(losowa==4)moneta4 = staramoneta;
+                        }
+                        console.log("nextrow"+wiersz);
+                        jakitowiersz.innerHTML = "";//zerujemy wiersz do ponownego zapisu monet tym razem ze zmienionymi wartosciami
+
+                        if(moneta1==1){//jak orzel to orzel
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{//jak resztka to resztka
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+                        if(moneta2==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+                        if(moneta3==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+                        if(moneta4==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+
+                        
+                        wiersz++;//po wszystkim przechodzimy do nowego wiersza aż do 10
+                        
+                    }
+                }
+            }
+        
+    </script>
+    <title>Document</title>
+</head>
+<body onload="konstrukcja()">
+    <article id="strona">
+    </article>
+    <div id="startblok">
+        STARTUJ:<br><input type="button"value='START'onclick='start()'>
+    </div>
+    
+</body>
+</html>

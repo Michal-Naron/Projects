@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>algorytm</title>
+</head>
+<style>
+    *{
+        text-align: center;
+    }
+    #lewy{
+        font-size: 200%;
+        width: 30%;
+        height: 700px;
+        float: left;
+        background-color: aquamarine;
+    }
+    #prawy{
+        font-size: 200%;
+        width: 30%;
+        height: 700px;
+        float: left;
+        background-color: aquamarine;
+    }
+    #srodek{
+        text-align: center;
+        width: 40%;
+        height: 700px;
+        float: left;
+        background-color: slategray;
+    }
+    .jeden{
+        background-color: gold;
+        color: red;
+    }
+    .zero{
+        background-color: lightblue;
+        color: red;
+    }
+    td{
+        width: 25%;
+        border: 1px dotted black;
+        height: 60px;
+        font-size: 200%;
+    }
+    table{
+        margin: auto;
+        width: 90%;
+    }
+    input{
+        height: 100px;
+        width: 300px;
+        font-size: 70px;
+    }
+</style>
+<script>
+    function skrypt(){
+        var cztery_razy = 1;
+        while(cztery_razy<3){
+            for(var i=1;i<41;i++){
+                var komorka_pierwsza = document.getElementById("komorka"+i);
+
+                if(i<=4){
+                    var losowa_liczba = Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=8){
+                    var losowa_liczba = 4 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=12){
+                    var losowa_liczba = 8 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=16){
+                    var losowa_liczba = 12 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=20){
+                    var losowa_liczba = 16 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=24){
+                    var losowa_liczba = 20 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=28){
+                    var losowa_liczba = 24 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=32){
+                    var losowa_liczba = 28 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=36){
+                    var losowa_liczba = 32 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+                else if(i<=40){
+                    var losowa_liczba = 36 + Math.floor(Math.random() * 4) + 1;
+                    var komorka_druga = document.getElementById("komorka"+losowa_liczba);
+                }
+
+                var stara_wartosc = komorka_druga.innerHTML;
+                komorka_druga.innerHTML = komorka_pierwsza.innerHTML;
+                komorka_pierwsza.innerHTML = stara_wartosc;
+
+                if(komorka_pierwsza.innerHTML == "jeden"){
+                    komorka_pierwsza.style.backgroundColor="gold";
+                }
+                else{
+                    komorka_pierwsza.style.backgroundColor="lightblue";
+                }
+                if(komorka_druga.innerHTML == "jeden"){
+                    komorka_druga.style.backgroundColor="gold";
+                }
+                else{
+                    komorka_druga.style.backgroundColor="lightblue";
+                }
+            }
+            cztery_razy++;
+        }
+    }
+</script>
+<body>
+    <main>
+        <section id="lewy">
+            AlGORYTM
+        </section>
+        <section id="srodek">
+            <table>
+                <tr>
+                    <td class="jeden" id="komorka1">jeden</td>
+                    <td class="jeden" id="komorka2">jeden</td>
+                    <td class="zero" id="komorka3">zero</td>
+                    <td class="zero" id="komorka4">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka5">jeden</td>
+                    <td class="jeden" id="komorka6">jeden</td>
+                    <td class="zero" id="komorka7">zero</td>
+                    <td class="zero" id="komorka8">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka9">jeden</td>
+                    <td class="jeden" id="komorka10">jeden</td>
+                    <td class="zero" id="komorka11">zero</td>
+                    <td class="zero" id="komorka12">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka13">jeden</td>
+                    <td class="jeden" id="komorka14">jeden</td>
+                    <td class="zero" id="komorka15">zero</td>
+                    <td class="zero" id="komorka16">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka17">jeden</td>
+                    <td class="jeden" id="komorka18">jeden</td>
+                    <td class="zero" id="komorka19">zero</td>
+                    <td class="zero" id="komorka20">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka21">jeden</td>
+                    <td class="jeden" id="komorka22">jeden</td>
+                    <td class="zero" id="komorka23">zero</td>
+                    <td class="zero" id="komorka24">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka25">jeden</td>
+                    <td class="jeden" id="komorka26">jeden</td>
+                    <td class="zero" id="komorka27">zero</td>
+                    <td class="zero" id="komorka28">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka29">jeden</td>
+                    <td class="jeden" id="komorka30">jeden</td>
+                    <td class="zero" id="komorka31">zero</td>
+                    <td class="zero" id="komorka32">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka33">jeden</td>
+                    <td class="jeden" id="komorka34">jeden</td>
+                    <td class="zero" id="komorka35">zero</td>
+                    <td class="zero" id="komorka36">zero</td>
+                </tr>
+                <tr>
+                    <td class="jeden" id="komorka37">jeden</td>
+                    <td class="jeden" id="komorka38">jeden</td>
+                    <td class="zero" id="komorka39">zero</td>
+                    <td class="zero" id="komorka40">zero</td>
+                </tr>
+            </table>
+        </section>
+        <section id="prawy">
+            WYSTARTUJ<br><br><br>
+            <input type="button" onclick="skrypt()" value="START">
+        </section>
+    </main>
+    
+</body>
+</html>

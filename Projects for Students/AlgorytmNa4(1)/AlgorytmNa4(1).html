@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            width: 500px;
+            font-size: 0;
+        }
+        .zolty,.fioletowy{ 
+            height: 100px;
+            width:100px ;
+            margin: 10px;
+            float: left;
+            border-radius: 20px;
+            text-align: center;
+            float: left;
+            font-size: 0px; 
+        }
+        .zolty{
+            background-color: yellow;
+            color:yellow;
+        }
+        .fioletowy{
+            background-color: purple;
+            color:purple;
+        }
+    </style>
+    <script>
+        function czysc(){
+            let div=document.getElementById('d1');
+            div.innerHTML=" "
+        }
+        function algorytm(){
+            let tablica = ["<div class='zolty'>d</div>","<div class='zolty'>d</div>","<div class='fioletowy'>d</div>","<div class='fioletowy'>d</div>"];
+            let div=document.getElementById('d1');
+            let utrzymanie
+            for(j=0;j<2;j++){// nowy kod  podpunkt d (konczy się tam gdzie sa"//") usunąć ten komentarz 
+            for(i=0;i<=3;i++){
+                let random=Math.round(Math.random()*3)
+                utrzymanie=tablica[i]
+                tablica[i]=tablica[random]
+                tablica[random]=utrzymanie
+                
+            }
+        }//
+            div.innerHTML+=tablica+"<br>"
+        }
+
+        function monety(){
+            
+            let div=document.getElementById('d1');
+            let tablica = ["<div class='zolty'>d</div>","<div class='zolty'>d</div>","<div class='fioletowy'>d</div>","<div class='fioletowy'>d</div>"];
+            for(i=0;i<10;i++){
+                div.innerHTML+=tablica+"<br>"
+            }
+        }
+
+
+        
+        function rozwiązanie(){
+            czysc()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+            algorytm()
+
+        }
+    </script>
+
+    
+    
+</head>
+<body onload="monety()" onclick="rozwiązanie()">
+<div id="d1"> </div>
+
+</body>
+</html>

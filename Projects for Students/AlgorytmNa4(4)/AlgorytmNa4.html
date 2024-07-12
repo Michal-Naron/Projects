@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            font-size: 50px;
+            float: left;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        input{
+            width: 200px;
+        }
+        #strona{
+            margin: 100px 21% 0 21%;
+            width: 700px;
+        }
+        .lewo{
+            width: 800px;
+            height: 70px;
+        }
+        #startblok{
+            margin-left: 500px;
+        }
+        #start{
+            
+            width: 100px;
+            height: 100px;
+        }
+        .orzel{
+            color: yellow;
+            background-color: blue;
+        }
+        .resztka{
+            color: blue;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        function konstrukcja(){
+            strona = document.getElementById("strona");
+
+            wiersz=1;
+            while(wiersz<11){
+                strona.innerHTML += "<div class='lewo' id='wiersz"+wiersz+"'></div>";
+                jakitowiersz = document.getElementById("wiersz"+wiersz);
+                for(i=1;i<5;i++){
+                    if(i<3){
+                        jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                    }
+                    else{
+                        jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                    }
+                }
+                wiersz=wiersz+1;
+            }
+            
+        }
+        function start(){
+                
+
+                
+                for(p=1;p<5;p++){
+                    wiersz = 1;
+                    while(wiersz<11){
+
+                        if(p==1){
+                            moneta1 = 1;
+                            moneta2 = 1;
+                            moneta3 = 0;
+                            moneta4 = 0;
+                        }
+                        
+
+                        jakitowiersz = document.getElementById("wiersz"+wiersz);
+
+                        for(i=1;i<5;i++){
+                            losowa = Math.floor(Math.random() * 4) + 1;
+
+                            if(losowa==1)monetadwa = moneta1;
+                            if(losowa==2)monetadwa = moneta2;
+                            if(losowa==3)monetadwa = moneta3;
+                            if(losowa==4)monetadwa = moneta4;
+
+                            if(i==1){
+                                staramoneta = moneta1;
+                                moneta1 = monetadwa;
+                            }
+                            if(i==2){
+                                staramoneta = moneta2;
+                                moneta2 = monetadwa;
+                            }
+                            if(i==3){
+                                staramoneta = moneta3;
+                                moneta3 = monetadwa;
+                            }
+                            if(i==4){
+                                staramoneta = moneta4;
+                                moneta4 = monetadwa;
+                            }
+
+                            if(losowa==1)moneta1 = staramoneta;
+                            if(losowa==2)moneta2 = staramoneta;
+                            if(losowa==3)moneta3 = staramoneta;
+                            if(losowa==4)moneta4 = staramoneta;
+                        }
+                        jakitowiersz.innerHTML = "";
+
+                        if(moneta1==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+                        if(moneta2==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+                        if(moneta3==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+                        if(moneta4==1){
+                            jakitowiersz.innerHTML += "<input class='orzel'type='button'value='orzel'>";
+                        }
+                        else{
+                            jakitowiersz.innerHTML += "<input class='resztka'type='button'value='resztka'>";
+                        }
+
+                        
+                        wiersz++;
+                        
+                    }
+                }
+            }
+        
+    </script>
+    <title>Document</title>
+</head>
+<body onload="konstrukcja()">
+    <article id="strona">
+    </article>
+    <div id="startblok">
+        STARTUJ:<br><input type="button"value='START'onclick='start()'>
+    </div>
+    
+</body>
+</html>

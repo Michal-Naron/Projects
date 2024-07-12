@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            text-align: center;
+            font-size:140%;
+        }
+        .h{
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 3px;
+            background-color: yellow;
+
+            float: left;
+        }
+        .t{
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 3px;
+            background-color: silver;
+
+            float: left;
+        }
+        #main{
+            width: 355px;
+            height: 880px;
+            margin: 0px 100px 0 100px;
+            background-color:antiquewhite;
+        }
+        input{
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            margin-top: 20px;
+        }
+        #button{
+            font-size: 100%;
+            position: absolute;
+            top: 200px;
+            width: 360px;
+            height: 80px;
+
+        }
+    </style>
+    <script>
+        function alg(){
+            for(reapeat = 1;reapeat<3;reapeat++){
+                for(row=1;row<11;row++){
+                    for(col=1;col<5;col++){
+                        var rand = Math.floor(Math.random() * 4) + 1;
+
+                        var coin_num_1 = document.getElementById("ch_"+row+"_"+col);
+                        var coin_num_rand = document.getElementById("ch_"+row+"_"+rand);
+
+                        var div_num_1 = document.getElementById("div_"+row+"_"+col);
+                        var div_num_rand = document.getElementById("div_"+row+"_"+rand);
+
+                        var val = coin_num_1.checked;
+                        switch (val){
+                            case true:
+                                if(coin_num_rand.checked == false){
+                                    coin_num_1.checked = false;
+                                    coin_num_rand.checked = true;
+
+                                    div_num_1.style.backgroundColor="silver";
+                                    div_num_rand.style.backgroundColor="yellow";
+                                }
+                                break;
+                            case false:
+                                if(coin_num_rand.checked == true){
+                                    coin_num_1.checked = true;
+                                    coin_num_rand.checked = false;
+
+                                    div_num_1.style.backgroundColor="yellow";
+                                    div_num_rand.style.backgroundColor="silver";
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    ALGORYTM
+        <script>
+            document.write("<div id='main'></div>");
+            var main = document.getElementById("main");
+
+            for(row=1;row<11;row++){
+                for(col=1;col<3;col++){
+                    main.innerHTML+="<div id='div_"+row+"_"+col+"' class='h'><input type='checkbox' id='ch_"+row+"_"+col+"' checked></div>";
+                    //do main'a dodajemy 
+                }
+                for(col=3;col<5;col++){
+                    main.innerHTML+="<div id='div_"+row+"_"+col+"' class='t'><input type='checkbox' id='ch_"+row+"_"+col+"'></div>";
+                }
+            }
+        </script>
+    <div id="start">
+        <input id="button"type="button" onclick="alg()"value="START program">
+    </div>
+</body>
+</html>

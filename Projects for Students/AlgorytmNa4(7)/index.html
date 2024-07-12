@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table,td{
+            border: 1px solid black;
+            width: 290px;
+            height: 70px;
+            box-shadow: 5px 5px 5px gray;
+            margin: 0px 0px 0px 100px;
+            text-align: center;
+            font-size: 130%;
+            color: #e4c900;
+        }
+        img{
+            width: 35px;
+            margin: 0px;
+        }
+        input{
+            margin: 10px 0px 0px 100px;
+            width: 200px;
+            height: 50px;
+            font-size: 150%;
+        }
+    </style>
+    <script>
+        function base_load(){
+            var number = 1;
+            var minus = 0;
+            var row = 0;
+            while(number!=41){
+                var id = document.getElementById(number);
+                if(row == 4){
+                    minus += -4;
+                    row = 1;
+                }
+                else{
+                    row++;
+                }
+                if((number+minus == 1) ||
+                (number+minus == 2)){
+                    id.style.backgroundColor = "#cfb90c";
+                    id.innerHTML = "<img src='reszka.png'>";
+                    
+                }
+                else{
+                    id.style.backgroundColor = "#a19d9d";
+                    id.innerHTML = "2zł"
+                }
+                number++;
+            }
+        }
+        
+        function random(){
+            var idnumbers = [];
+
+            for(var i=1;i<41;i++){
+                idnumbers[i-1] = i;
+            }
+            for(var twotimes = 1;twotimes<3;twotimes++){
+
+                for(var num=1;num<41;num++) { 
+                    if(twotimes==1)var id_1 = document.getElementById(num);
+
+                    randomize = Math.floor(Math.random() * 4) + 1;
+
+                    if(twotimes==1)id_1.remove();
+
+                    if(num<5){
+                        randomize = randomize;
+                    }
+                    else if(num<9){
+                        randomize = randomize+4;
+                    }
+                    else if(num<13){
+                        randomize = randomize+8;
+                    }
+                    else if(num<17){
+                        randomize = randomize+12;
+                    }
+                    else if(num<21){
+                        randomize = randomize+16;
+                    }
+                    else if(num<25){
+                        randomize = randomize+20;
+                    }
+                    else if(num<29){
+                        randomize = randomize+24;
+                    }
+                    else if(num<33){
+                        randomize = randomize+28;
+                    }
+                    else if(num<37){
+                        randomize = randomize+32;
+                    }
+                    else if(num<41){
+                        randomize = randomize+36;
+                    }
+                    temp = idnumbers[num-1];
+                    idnumbers[num-1] = idnumbers[randomize-1];
+                    idnumbers[randomize-1] = temp; 
+                }
+                
+            }
+            
+
+            var table = document.getElementById("table");
+            var finalResult = "";
+            finalResult += "<tr>"; 
+            for(cell=0;cell<40;cell++){
+                finalResult += "<td id='"+idnumbers[cell]+"'></td>";
+                if(cell==3 || cell==7 || cell==11 || cell==15 || cell==19 || cell==23
+                || cell==27 || cell==31|| cell==35 || cell==39)finalResult +="</tr><tr>";
+            }
+            finalResult += "</tr>"; 
+
+            table.innerHTML = finalResult;
+
+            base_load();
+        }
+    </script>
+</head>
+<body onload="base_load()">
+    <input type="button" value="Randomize" onclick="random()">
+    <table id="table">
+        <tr>
+            <td id="1"></td>
+            <td id="2"></td>
+            <td id="3"></td>
+            <td id="4"></td>
+        </tr>
+        <tr>
+            <td id="5"></td>
+            <td id="6"></td>
+            <td id="7"></td>
+            <td id="8"></td>
+        </tr>
+        <tr>
+            <td id="9"></td>
+            <td id="10"></td>
+            <td id="11"></td>
+            <td id="12"></td>
+        </tr>
+        <tr>
+            <td id="13"></td>
+            <td id="14"></td>
+            <td id="15"></td>
+            <td id="16"></td>
+        </tr>
+        <tr>
+            <td id="17"></td>
+            <td id="18"></td>
+            <td id="19"></td>
+            <td id="20"></td>
+        </tr>
+        <tr>
+            <td id="21"></td>
+            <td id="22"></td>
+            <td id="23"></td>
+            <td id="24"></td>
+        </tr>
+        <tr>
+            <td id="25"></td>
+            <td id="26"></td>
+            <td id="27"></td>
+            <td id="28"></td>
+        </tr>
+        <tr>
+            <td id="29"></td>
+            <td id="30"></td>
+            <td id="31"></td>
+            <td id="32"></td>
+        </tr>
+        <tr>
+            <td id="33"></td>
+            <td id="34"></td>
+            <td id="35"></td>
+            <td id="36"></td>
+        </tr>
+        <tr>
+            <td id="37"></td>
+            <td id="38"></td>
+            <td id="39"></td>
+            <td id="40"></td>
+        </tr>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            text-align: center;
+            font-size:140%;
+        }
+        .h{
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 3px;
+            background-color: yellow;
+
+            float: left;
+        }
+        .t{
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 3px;
+            background-color: silver;
+
+            float: left;
+        }
+        #main{
+            width: 355px;
+            height: 880px;
+            margin: 0px 100px 0 100px;
+            background-color:antiquewhite;
+        }
+        input{
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            margin-top: 20px;
+        }
+        #button{
+            font-size: 100%;
+            position: absolute;
+            top: 200px;
+            width: 360px;
+            height: 80px;
+
+        }
+    </style>
+    <script>
+        function alg(){
+            //####################
+            //podpunkt d. POCZATEK
+            //####################
+            for(reapeat = 1;reapeat<3;reapeat++){//ta pętla wykonuję się DWA razy powodując podwojenie wszystkich operacji b i c
+            //####################
+            //podpunkt d. POCZATEK
+            //####################
+                for(row=1;row<11;row++){//pętla interująca po wszystkich wierszach
+                    for(col=1;col<5;col++){//pętla interująca po wszystkich kolumnach
+                        //####################
+                        //podpunkt b. POCZATEK
+                        //####################
+                        
+                        //losujemy losową liczbę w przedziale <1;4> dla każdej komórki
+                        var rand = Math.floor(Math.random() * 4) + 1;
+                        //##################
+                        //podpunkt b. KONIEC
+                        //##################
+
+                        //####################
+                        //podpunkt c. POCZATEK
+                        //####################
+                        var coin_num_1 = document.getElementById("ch_"+row+"_"+col);//pobieramy checkboxa monety pierwszej czyli od 1 do 4 moneta wybierana jest po kolei
+                        var coin_num_rand = document.getElementById("ch_"+row+"_"+rand);//losujemy monete przez zmienną rand
+
+                        var div_num_1 = document.getElementById("div_"+row+"_"+col);//pobieramy blok monety pierwszej czyli od 1 do 4
+                        var div_num_rand = document.getElementById("div_"+row+"_"+rand);//bierzemy blok monety wylosowanej przed chwilą
+
+                        var val = coin_num_1.checked;//do zmiennej deklarujemy wartość monety aktualnie wybranej 
+                        switch (val){//rozpatrujemy dwa przypadki wartosci tej zmiennej
+                            case true://przypadek kiedy moneta wybrana jest orłem
+                                if(coin_num_rand.checked == false){//teraz sprawdzamy czy wylowowana moneta jest inna od tej co aktualnie na niej operujemy jak są takie same to
+                                    //zmienianie czego kolowiek nie ma sensu
+                                    coin_num_1.checked = false;//zamieniamy monety wartościami
+                                    coin_num_rand.checked = true;
+
+                                    div_num_1.style.backgroundColor="silver";//a teraz tło bloków monet
+                                    div_num_rand.style.backgroundColor="yellow";
+                                }
+                                break;
+                            case false://przypadek kiedy moneta wybrana jest resztką
+                                if(coin_num_rand.checked == true){          
+                                    coin_num_1.checked = true;          //tutaj robimy dokładnie to samo tylko odwrotnie bo to jest przypadek z resztką
+                                    coin_num_rand.checked = false;
+
+                                    div_num_1.style.backgroundColor="yellow";
+                                    div_num_rand.style.backgroundColor="silver";
+                                }
+                                break;
+                        }
+                        //##################
+                        //podpunkt c. KONIEC
+                        //##################
+                    }
+                }
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    ALGORYTM
+        <!--#####################-->
+        <!--podpunkt a. POCZATTEK-->
+        <!--#####################-->
+        <script>
+            document.write("<div id='main'></div>");//do strony dodajemy blok div o id main
+            var main = document.getElementById("main");//teraz bierzemy ten blok do zmiennej
+
+            for(row=1;row<11;row++){//pętla potrzebna do identyfikacji 10 wierszy
+                for(col=1;col<3;col++){//pętla potrzebna do wypisania orłów
+                    //do main'a dodajemy blok div o specialnym niepowtarzalnym id i checkbox'a który w tym wypadku jest zaznaczony bo w tej pętli wypisujemy dwa bloki orły
+                    main.innerHTML+="<div id='div_"+row+"_"+col+"' class='h'><input type='checkbox' id='ch_"+row+"_"+col+"' checked></div>";
+                }
+                for(col=3;col<5;col++){//pętla potrzebna do wypisania resztek
+                    //tutaj to samo tylko dla resztek pętle od indexu 3 do 4 <3;4>
+                    main.innerHTML+="<div id='div_"+row+"_"+col+"' class='t'><input type='checkbox' id='ch_"+row+"_"+col+"'></div>";
+                }
+            }
+        </script>
+        <!--##################-->
+        <!--podpunkt a. KONIEC-->
+        <!--##################-->
+    <div id="start">
+        <input id="button"type="button" onclick="alg()"value="START program">
+    </div>
+</body>
+</html>

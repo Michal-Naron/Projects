@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            font-size: 50px;
+            margin: 0px;
+        }
+        #div1{
+            margin: 50px 0px 0px 100px;
+        }
+        table{
+            text-align: right;
+            border-collapse: collapse;
+        }
+        td{
+            padding: 5px 10px 5px 0px;
+        }
+        #numl{
+            border-right: 1px solid black;
+            padding-right: 10px;
+        }
+        #numb{
+            text-align: center;
+            border-top: 1px solid black;
+        }
+        .heads{
+            color: yellow;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            border: 1px solid black;
+        }
+        .tails{
+            color: darkslateblue;
+            width: 50px;
+            height: 50px;
+            background-color:darkslateblue;
+            border: 1px solid black;
+
+            
+        }
+        button{
+            width: 200px;
+            height: 100px;
+
+        }
+
+    </style>
+    <script>
+        function build(){//funkcja budująca całą tabelkę
+            let main = document.getElementById("main");//biorę kontener tabeli ze strony aby na niej operować
+
+            out = "";//to będzie zmienna zawierająca całą tabelke
+            for(i=1;i<=10;i++){//funkcja budująca wiersze
+                out += "<tr>";
+                out += "<td id='numl'>"+i+"</td>";//[table data] z liczbą wiersza
+                    for(x=1;x<=2;x++){//funkcja budująca orły
+                        out += "<td><div  id='z"+i+x+"'class='heads'>1</div></td>";//nadajemy id i klasę bloku dodatkowo też wartość czyli 1
+                    }
+                    for(x=3;x<=4;x++){//funkcja budująca resztki
+                        out += "<td><div  id='z"+i+x+"'class='tails'>0</div></td>";
+                    }
+                out += "</tr>";
+            }
+            //dół tabelki z numerami kolumn
+            out += "<tr><td></td>";
+
+            for(x=1;x<=4;x++){
+                out += "<td id='numb'>"+x+"</td>";
+            }
+            out += "</tr>";
+
+            main.innerHTML += out;//do naszej tabelki teraz wprowadzamy cały nasz napis stworzony wcześniej
+            
+            
+        }
+        function algorithm(){//funkcja zamieniająca miejscami monety
+        for(x=1;x<=4;x++){//wszysstkie operacje wykonywane są czterokrotnie
+            for(i1=1;i1<=10;i1++){//pętla odpowiedzialna za przejście po wszystkich wiersszach wykona się 10 razy
+                for(i2=1;i2<=4;i2++){//pętla odpowiedzialna za przejście po wszystkich monetach wykona się 4 razy
+                    
+                    coin1 = document.getElementById("z"+i1+i2);//bierzermy ze strony monetę od 1 do 4
+                    //zmienna i1 oznacza która to kolumna, a i2 wiersz
+                    rnum = Math.floor(Math.random() * 4) + 1;//4 to maksymalna wartosc losowanej liczby zbiór <1;4>
+                        console.log(rnum);
+                    coin2 = document.getElementById("z"+i1+rnum);//druga moneta ale wylosowana ze zbioru <1;4>
+                    //Teraz zamieniamy monety miejscami
+                    if(coin1.innerHTML == "1"){//pierwsza możliwość dla monety o kolorze żółtym(orzeł)
+                    
+                        if(coin2.innerHTML == "0"){//jeśli druga moneta to resztka zachodzą zmiany
+
+                            coin2.innerHTML = "1";//przypisujemy wartość orła dla resztki
+                            coin2.classList.remove("tails");//usuwamy klasę resztki, przez co traci ona swój kolor
+                            coin2.classList.add("heads");//nadajemy nową klasę monecie co za tym idzie nowy kolor
+                        
+                            coin1.innerHTML = "0";//przypisujemy wartość resztki monecie z orłem
+                            coin1.classList.remove("heads");
+                            coin1.classList.add("tails");
+
+                        
+                        }
+                        //jeśli drugą monetą będzie orzeł to nie ma sensu ich zamieniać kolorami bo są takie same
+                    }
+
+                    //analogicznie dla drugiego wariantu kiedy monetą będzie resztka. Wszystko odwrotnie
+                    else{
+                    
+                        if(coin2.innerHTML == "1"){
+                            coin1.innerHTML = "1";
+                            coin1.classList.remove("tails");
+                            coin1.classList.add("heads");
+
+                            coin2.innerHTML = "0"
+                            coin2.classList.remove("heads");
+                            coin2.classList.add("tails");
+                        }
+                    
+                    }
+                }
+                console.log("nextrow");
+            }
+        }
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body onload="build()"><!--funkcja build() jest od razu po otworzeniu strony-->
+    <div id="div1">
+        <table id="main">
+        </table>
+        <input type="button" value="START"onclick="algorithm()"><!--funkcja build() jest odpalana po naciśnięciu przycisku-->
+    </div>
+    
+</body>
+</html>
