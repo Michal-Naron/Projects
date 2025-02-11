@@ -1,0 +1,22 @@
+.boc-column-wrapper {
+    height: 100%;
+    min-width: 15vh;
+    background-color: gray;
+}
+
+.boc-title {
+    text-align: center;
+}
+
+.boc-tasks-list {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.boc-single-task {
+    padding: 10px;
+    margin: 20px;
+    background-color: aquamarine;
+}
