@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const io = require("../socket")
+
 const { validationResult } = require('express-validator/check');
 
 const Post = require('../models/post');
@@ -21,13 +23,9 @@ exports.getPosts = async(req, res, next) => {
           posts: posts,
           totalItems: totalItems
         });
+    
 
-    // .catch(err => {
-    //   if (!err.statusCode) {
-    //     err.statusCode = 500;
-    //   }
-    //   next(err);
-    // });
+
 };
 
 exports.createPost = (req, res, next) => {
@@ -54,6 +52,7 @@ exports.createPost = (req, res, next) => {
   post
     .save()
     .then(result => {
+
       res.status(201).json({
         message: 'Post created successfully!',
         post: result
